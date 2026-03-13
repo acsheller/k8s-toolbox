@@ -1,0 +1,9 @@
+services:
+  toolbox:
+    image: k8s-toolbox:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    stdin_open: true
+    tty: true
+    network_mode: host

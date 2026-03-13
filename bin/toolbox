@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+IMAGE="k8s-toolbox:latest"
+
+if [[ -z "${KUBECONFIG:-}" ]]; then
+  echo "Error: KUBECONFIG is not set."
+  echo "Set it first, for example: export KUBECONFIG=\$HOME/.kube/config"
+  exit 1
+fi
+
+mkdir -p \
+  "${HOME}/.k9s" \
+  "${HOME}/.config/helm" \
+  "${HOME}/.cache/helm" \
+  "${HOME}/.local/share/helm"
+
+DOCKER_ARGS=(
+  --rm
+  -it
+  --network host
+  -e KUBECONFIG=/kube/config
+  -v "${KUBECONFIG}:/kube/config:ro"
+  -v "${HOME}/.k9s:/root/.k9s"
+  -v "${HOME}/.config/helm:/root/.config/helm"
+  -v "${HOME}/.cache/helm:/root/.cache/helm"
+  -v "${HOME}/.local/share/helm:/root/.local/share/helm"
+  -v "$(pwd):/work"
+  -w /work
+)
+
+if [[ $# -eq 0 ]]; then
+  exec docker run "${DOCKER_ARGS[@]}" "${IMAGE}"
+fi
+
+CMD_STRING=$(printf '%q ' "$@")
+exec docker run "${DOCKER_ARGS[@]}" "${IMAGE}" -lc "${CMD_STRING% }"
