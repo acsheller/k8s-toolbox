@@ -4,7 +4,7 @@
 shopt -s expand_aliases
 
 alias k='kubectl'
-
+alias kg='kubectl get'
 alias kgp='kubectl get pods'
 alias kgpa='kubectl get pods -A'
 alias kgs='kubectl get svc'
