@@ -3,22 +3,31 @@
 # Enable aliases for non-interactive shells (e.g. `bash -lc`).
 shopt -s expand_aliases
 
-alias k='kubectl'
-alias kg='kubectl get'
-alias kgp='kubectl get pods'
-alias kgpa='kubectl get pods -A'
-alias kgs='kubectl get svc'
-alias kgd='kubectl get deploy'
-alias kga='kubectl get all'
+alias k='toolbox kubectl'
+alias kg='toolbox kubectl get'
+alias kgp='toolbox kubectl get pods'
+alias kgpa='toolbox kubectl get pods -A'
+alias kgs='toolbox kubectl get svc'
+alias kd='toolbox kubectl describe'
+alias kdel='toolbox kubectl delete'
+alias kgs='toolbox kubectl get svc'
+alias kgd='toolbox kubectl get deploy'
+alias kga='toolbox kubectl get all'
 
-alias kdp='kubectl describe pod'
-alias kds='kubectl describe svc'
-alias kdd='kubectl describe deploy'
+alias kdp='toolbox kubectl describe pod'
+alias kds='toolbox kubectl describe svc'
+alias kdd='toolbox kubectl describe deploy'
 
-alias kl='kubectl logs'
-alias klf='kubectl logs -f'
+alias kl='toolbox kubectl logs'
+alias klf='toolbox kubectl logs -f'
 
-alias kdel='kubectl delete'
 
-alias kn='kubens'
-alias kc='kubectx'
+alias kn='toolbox kubens'
+alias kc='toolbox kubectx'
+
+alias h='toolbox helm'
+alias k9='toolbox k9s'
+alias st='toolbox stern'
+alias kl='toolbox kubectl logs'
+alias kf='toolbox kubectl port-forward'
+alias ke='toolbox kubectl exec -it'

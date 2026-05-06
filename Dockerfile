@@ -15,6 +15,7 @@ RUN apk add --no-cache \
     jq \
     tar \
     gzip \
+    ncurses \
     ca-certificates
 
 RUN set -eux; \
